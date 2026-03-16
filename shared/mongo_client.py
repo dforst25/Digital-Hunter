@@ -76,3 +76,10 @@ class MongoConnector:
             {"entity_id": target_id},
             {"$set": {"is_attacked": True}}
         )
+
+    def insert_status(self, target_id, status):
+        collection = self.get_bank_coll()
+        collection.update_one(
+            {"entity_id": target_id},
+            {"$set": {"status": status}}
+        )
