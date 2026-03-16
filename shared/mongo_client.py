@@ -70,3 +70,9 @@ class MongoConnector:
         self.logger.info("Insert a new message to the intel collection")
         collection.insert_one(doc)
 
+    def insert_is_attacked(self, target_id):
+        collection = self.get_bank_coll()
+        collection.update_one(
+            {"entity_id": target_id},
+            {"$set": {"is_attacked": True}}
+        )
